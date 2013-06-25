@@ -13,6 +13,7 @@ module HstoreRadioButtons::FormBuilder
   include ActionView::Helpers::TagHelper
 
   def hstore_radio_button(method, options = {})
+    method = method.to_s.gsub(/\s/, '_').to_sym
     options[:separator] = (options[:separator] ? options[:separator] : "<br />")
     radio_options = object.public_send("#{method}_options".to_sym)
     button_set = "#{method.to_s.titleize}#{options[:separator]}"
