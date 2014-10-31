@@ -13,7 +13,6 @@ module HstoreRadioButtons::FormBuilder
   include ActionView::Helpers::TagHelper
 
   def hstore_radio_button(method, options = {})
-    method = method.to_s.gsub(/\s/, '_').to_sym
     options[:separator] = (options[:separator] ? options[:separator] : "<br />")
     methods = HstoreRadioButtons::MethodNamer.new(method)
 

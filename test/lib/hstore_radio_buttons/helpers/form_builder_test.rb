@@ -57,20 +57,7 @@ class FormBuilderTest < ActionView::TestCase
     assert_equal expected, it.hstore_radio_button(:gender)
   end
 
-  test "if FormBuilder#hstore_radio_button is called with a string that method is converted to a camel_case symbol" do
-    expected = "<div>Favorite Barn Animal<br />"
-    @person_instance.favorite_barn_animal_options.each do |option|
-      view.stubs(:hstore_radio_button).with(:person, :favorite_barn_animal, option, {:separator => "<br />", :object => @person_instance}).returns(option)
-      expected += "#{option}"
-    end
-    expected += "</div>"
-
-    it = ActionView::Helpers::FormBuilder.new(:person, @person_instance, view, {}, proc {})
-
-    assert_equal expected, it.hstore_radio_button('favorite barn animal')
-  end
-
-    test "#hstore_radio_buttons builds a button set for each button defined in the class" do
+  test "#hstore_radio_buttons builds a button set for each button defined in the class" do
     it = ActionView::Helpers::FormBuilder.new(:person, @person_instance, view, {}, proc {})
 
     all_buttons = Person.instance_variable_get(:@hstore_button_getters)
